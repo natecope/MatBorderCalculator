@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MatBorder : NSObject
+@interface MatBorder : NSObject <NSCoding>
 
 @property (assign, nonatomic) double frameWidth;
 @property (assign, nonatomic) double frameHeight;

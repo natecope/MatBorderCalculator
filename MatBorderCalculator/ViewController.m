@@ -32,7 +32,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
 
-
 @end
 
 @implementation ViewController
@@ -48,14 +47,45 @@
     self.imageWidthTextField.delegate = self;
     self.imageHeightTextField.delegate = self;
     
-    _matBorderLayoutArray = [[NSMutableArray alloc]init];
     
-    [self addTestData];
+    //_matBorderLayoutArray = [[NSMutableArray alloc]init];
+    
+    //[self addTestData];
+    
+    //load data on start or create starting values
+    [self loadData];
     
     _selectedRow = 0;
     
+    [self updateDisplayForSelectedRow];
+    
+    [self calculate];
+    
+    [self.view setNeedsUpdateConstraints];
+    
     //NSLog(@"%@", _matBorderLayoutArray);
     
+}
+
+- (NSString *)documentDirectory {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+}
+
+- (void)loadData{
+    NSLog(@"Loading MatBorder Data");
+    NSString *fileName = @"MatBorder.plist";
+    NSString *filePath = [[self documentDirectory] stringByAppendingPathComponent:fileName];
+    
+    //load app data
+    _matBorderLayoutArray = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    
+    //create data if doesn't exist
+    if(!_matBorderLayoutArray){
+        _matBorderLayoutArray = [[NSMutableArray alloc] init];
+        
+        //load test data or real data
+        [self addTestData];
+    }
 }
 
 - (void)addTestData{
@@ -86,6 +116,8 @@
 
 - (IBAction)layoutsButtonPressed:(id)sender {
     
+    [self calculate];
+    
     //get the current storyboard (what do we do for ipad?)
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     
@@ -101,6 +133,7 @@
     
     //assign data
     layoutTableViewController.matBorderLayoutArray = _matBorderLayoutArray;
+    layoutTableViewController.selectedRow = _selectedRow;
     
     //present
     [self presentViewController:navigationController animated:YES completion:nil];
@@ -118,28 +151,42 @@
     
 }
 
-- (void)calculate {
-    
-    if(!_matBorder){
-        _matBorder = [[MatBorder alloc]init];
-    }
-    
+- (void)captureUserInterfaceData{
+    //grab user input
     //'text' is an NSString object. doubleValue is a function of NSString, so we can call it.
     _matBorder.frameWidth = [self.frameWidthTextField.text doubleValue];
     _matBorder.frameHeight = [self.frameHeightTextField.text doubleValue];
     _matBorder.imageWidth = [self.imageWidthTextField.text doubleValue];
     _matBorder.imageHeight = [self.imageHeightTextField.text doubleValue];
     
+    //update the data array
+    if(_selectedRow < [_matBorderLayoutArray count]){
+        MatBorder *selectedMatBorder = _matBorderLayoutArray[_selectedRow];
+        
+        selectedMatBorder.frameWidth = _matBorder.frameWidth;
+        selectedMatBorder.frameHeight = _matBorder.frameHeight;
+        selectedMatBorder.imageWidth = _matBorder.imageWidth;
+        selectedMatBorder.imageHeight = _matBorder.imageHeight;
+        
+    }
+    
+}
+
+- (void)calculate {
+    
+    //Grab user input
+    [self captureUserInterfaceData];
+
     [_matBorder calculateBorders];
     
     // Display the calculations
-    
     self.topBorderLabel.text = [@(_matBorder.topBorderWidth) stringValue];
     self.bottomBorderLabel.text = [@(_matBorder.bottomBorderWidth) stringValue];
     self.leftBorderLabel.text = [@(_matBorder.leftBorderWidth) stringValue];
     self.rightBorderLabel.text = [@(_matBorder.rightBorderWidth) stringValue];
     
-    
+    [self hideKeyboard];
+    [self.view setNeedsUpdateConstraints];
     
 }
 
@@ -218,6 +265,8 @@
     _selectedRow = indexPath.row;
     
     [self updateDisplayForSelectedRow];
+    
+    [self calculate];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
