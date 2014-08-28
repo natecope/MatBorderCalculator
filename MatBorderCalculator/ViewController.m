@@ -121,7 +121,6 @@
     //get the current storyboard (what do we do for ipad?)
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     
-   
     //instantiate the new controller we want
     LayoutTableViewController *layoutTableViewController = [storyboard instantiateViewControllerWithIdentifier:@"LayoutTableViewController"];
 
