@@ -22,5 +22,6 @@
 
 @property (nonatomic, weak) NSMutableArray *matBorderLayoutArray;
 @property (nonatomic, weak) id<LayoutTableViewControllerDelegate> delegate;
+@property (nonatomic, assign) NSInteger selectedRow;
 
 @end

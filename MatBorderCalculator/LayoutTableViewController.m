@@ -27,9 +27,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
 }
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    // select the row
+    //todo: replace insection:0 with a constant
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_selectedRow inSection:0];
+    
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+
 - (IBAction)doneButtonPressed:(id)sender {
     
     [self.delegate layoutTableViewControllerDidFinish:self];

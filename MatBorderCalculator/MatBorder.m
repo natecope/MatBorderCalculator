@@ -8,7 +8,32 @@
 
 #import "MatBorder.h"
 
+static NSString *const kFrameWidth = @"frameWidth";
+static NSString *const kFrameHeight = @"frameHeight";
+static NSString *const kImageWidth = @"imageWidth";
+static NSString *const kImageHeight = @"imageHeight";
+
 @implementation MatBorder
+
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if(self){
+        _frameWidth = [aDecoder decodeDoubleForKey:kFrameWidth];
+        _frameHeight = [aDecoder decodeDoubleForKey:kFrameHeight];
+        _imageWidth = [aDecoder decodeDoubleForKey:kImageWidth];
+        _imageHeight = [aDecoder decodeDoubleForKey:kImageHeight];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    
+    [aCoder encodeDouble:_frameWidth forKey:kFrameWidth];
+    [aCoder encodeDouble:_frameHeight forKey:kFrameHeight];
+    [aCoder encodeDouble:_imageWidth forKey:kImageWidth];
+    [aCoder encodeDouble:_imageHeight forKey:kImageHeight];
+    
+}
 
 - (void)calculateBorders{
     
@@ -25,7 +50,17 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Frame: %0.0fx%0.0f Image: %0.0fx%0.0f", self.frameWidth, self.frameHeight, self.imageWidth, self.imageHeight];
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc]init];
+    [numberFormatter setMaximumFractionDigits:2];
+    
+    return [NSString stringWithFormat:@"Frame: %@ x %@ Image: %@ x %@",
+            [numberFormatter stringFromNumber:@(self.frameWidth)],
+            [numberFormatter stringFromNumber:@(self.frameHeight)],
+            [numberFormatter stringFromNumber:@(self.imageWidth)],
+            [numberFormatter stringFromNumber:@(self.imageHeight)]];
+    
+    //return [NSString stringWithFormat:@"Frame: %0.0fx%0.0f Image: %0.0fx%0.0f", self.frameWidth, self.frameHeight, self.imageWidth, self.imageHeight];
 }
 
 @end
