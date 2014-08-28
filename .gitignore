@@ -23,3 +23,5 @@ build/
 # Backup files
 *~.nib
 *.xcuserstate
+
+MatBorderCalculator.xcodeproj/project.xcworkspace/xcuserdata/ncope.xcuserdatad/UserInterfaceState.xcuserstate
