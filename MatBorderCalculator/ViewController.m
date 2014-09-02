@@ -88,6 +88,17 @@
     }
 }
 
+- (void)saveData {
+    NSLog(@"%@.%@() ", NSStringFromClass([self class]), NSStringFromSelector(_cmd) );
+    
+    NSString *filename = @"MatBorder.plist";
+    NSString *filepath = [[self documentDirectory] stringByAppendingPathComponent:filename];
+    
+    BOOL success = [NSKeyedArchiver archiveRootObject:_matBorderLayoutArray toFile:filepath];
+    
+    NSLog(@"%@.%@(): Saved data success: %d ", NSStringFromClass([self class]), NSStringFromSelector(_cmd), success);
+}
+
 - (void)addTestData{
     for(int i=0; i<5; i++){
         MatBorder *matBorder = [[MatBorder alloc]init];
@@ -188,6 +199,10 @@
     
     [self hideKeyboard];
     [self.view setNeedsUpdateConstraints];
+    
+    // save the app data
+    
+    [self saveData];
     
 }
 
