@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MatBorderCalculator/ViewController.m"
-            timestampString = "431379449.300314"
+            timestampString = "431382580.479291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "-captureUserInterfaceData"
             landmarkType = "5">
          </BreakpointContent>

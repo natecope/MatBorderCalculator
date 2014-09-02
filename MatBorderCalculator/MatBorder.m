@@ -15,6 +15,21 @@ static NSString *const kImageHeight = @"imageHeight";
 
 @implementation MatBorder
 
+- (id)initWithFrameWidth:(double)frameWidth
+             frameHeight:(double)frameHeight
+              imageWidth:(double)imageWidth
+             imageHeight:(double)imageHeight{
+    self = [super init];
+    if(self){
+        _frameWidth = frameWidth;
+        _frameHeight = frameHeight;
+        _imageWidth = imageWidth;
+        _imageHeight = imageHeight;
+        
+    }
+    return self;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super init];
     if(self){
@@ -32,6 +47,8 @@ static NSString *const kImageHeight = @"imageHeight";
     [aCoder encodeDouble:_frameHeight forKey:kFrameHeight];
     [aCoder encodeDouble:_imageWidth forKey:kImageWidth];
     [aCoder encodeDouble:_imageHeight forKey:kImageHeight];
+    
+    
     
 }
 

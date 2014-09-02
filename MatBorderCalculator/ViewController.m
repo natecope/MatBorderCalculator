@@ -77,15 +77,23 @@
     NSString *filePath = [[self documentDirectory] stringByAppendingPathComponent:fileName];
     
     //load app data
-    _matBorderLayoutArray = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-    
-    //create data if doesn't exist
-    if(!_matBorderLayoutArray){
-        _matBorderLayoutArray = [[NSMutableArray alloc] init];
-        
-        //load test data or real data
-        [self addTestData];
+    @try {
+        _matBorderLayoutArray = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     }
+    @catch (NSException *exception) {
+        NSLog(@"%@.%@(): Exception: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd) ,exception );
+    }
+    @finally {
+        //create data if doesn't exist
+        if(!_matBorderLayoutArray){
+            _matBorderLayoutArray = [[NSMutableArray alloc] init];
+            
+            //load starter data
+            [self addStarterData];
+        }
+    }
+    
+
 }
 
 - (void)saveData {
@@ -97,6 +105,23 @@
     BOOL success = [NSKeyedArchiver archiveRootObject:_matBorderLayoutArray toFile:filepath];
     
     NSLog(@"%@.%@(): Saved data success: %d ", NSStringFromClass([self class]), NSStringFromSelector(_cmd), success);
+}
+
+
+- (void)addStarterData {
+    
+    //20 x 16, 14 x 11
+    //10 x 8, 7 x 5
+    //8 x 10, 5 x 7
+    //20 x 30, 16 x 20
+
+    MatBorder *matBorder1 = [[MatBorder alloc]initWithFrameWidth:20 frameHeight:16 imageWidth:14 imageHeight:11];
+    MatBorder *matBorder2 = [[MatBorder alloc]initWithFrameWidth:10 frameHeight:8 imageWidth:7 imageHeight:5];
+    MatBorder *matBorder3 = [[MatBorder alloc]initWithFrameWidth:8 frameHeight:10 imageWidth:5 imageHeight:7];
+    MatBorder *matBorder4 = [[MatBorder alloc]initWithFrameWidth:20 frameHeight:30 imageWidth:16 imageHeight:20];
+    
+    [_matBorderLayoutArray addObjectsFromArray:@[matBorder1, matBorder2, matBorder3, matBorder4]];
+    
 }
 
 - (void)addTestData{

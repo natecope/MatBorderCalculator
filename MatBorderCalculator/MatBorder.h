@@ -20,5 +20,10 @@
 @property (assign, nonatomic) double topBorderWidth;
 @property (assign, nonatomic) double bottomBorderWidth;
 
+- (id)initWithFrameWidth:(double)frameWidth
+             frameHeight:(double)frameHeight
+              imageWidth:(double)imageWidth
+             imageHeight:(double)imageHeight;
+
 - (void)calculateBorders;
 @end
