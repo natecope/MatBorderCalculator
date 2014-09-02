@@ -153,6 +153,8 @@
 - (void)captureUserInterfaceData{
     //grab user input
     //'text' is an NSString object. doubleValue is a function of NSString, so we can call it.
+    
+    _matBorder = [[MatBorder alloc]init];
     _matBorder.frameWidth = [self.frameWidthTextField.text doubleValue];
     _matBorder.frameHeight = [self.frameHeightTextField.text doubleValue];
     _matBorder.imageWidth = [self.imageWidthTextField.text doubleValue];
