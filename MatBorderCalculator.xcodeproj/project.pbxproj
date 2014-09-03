@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2014D9619B75D43004F9579 /* UnitSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2014D9519B75D43004F9579 /* UnitSliderView.m */; };
+		B2014D9819B75D58004F9579 /* UnitSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2014D9719B75D58004F9579 /* UnitSliderView.xib */; };
 		B21681031976E471004396A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21681021976E471004396A8 /* Foundation.framework */; };
 		B21681051976E471004396A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21681041976E471004396A8 /* CoreGraphics.framework */; };
 		B21681071976E471004396A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21681061976E471004396A8 /* UIKit.framework */; };
@@ -38,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B2014D9419B75D43004F9579 /* UnitSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSliderView.h; sourceTree = "<group>"; };
+		B2014D9519B75D43004F9579 /* UnitSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSliderView.m; sourceTree = "<group>"; };
+		B2014D9719B75D58004F9579 /* UnitSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnitSliderView.xib; sourceTree = "<group>"; };
 		B21680FF1976E471004396A8 /* MatBorderCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatBorderCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B21681021976E471004396A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B21681041976E471004396A8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -130,6 +135,9 @@
 				B21681141976E471004396A8 /* Main_iPhone.storyboard */,
 				B2821ACC19A13E65008D2113 /* LayoutTableViewController.h */,
 				B2821ACD19A13E65008D2113 /* LayoutTableViewController.m */,
+				B2014D9419B75D43004F9579 /* UnitSliderView.h */,
+				B2014D9519B75D43004F9579 /* UnitSliderView.m */,
+				B2014D9719B75D58004F9579 /* UnitSliderView.xib */,
 				B216813C19772223004396A8 /* MatBorder.h */,
 				B216813D19772223004396A8 /* MatBorder.m */,
 				B21681091976E471004396A8 /* Supporting Files */,
@@ -245,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B21681191976E471004396A8 /* Main_iPad.storyboard in Resources */,
+				B2014D9819B75D58004F9579 /* UnitSliderView.xib in Resources */,
 				B216811E1976E471004396A8 /* Images.xcassets in Resources */,
 				B216813B1976E7D9004396A8 /* kuma.png in Resources */,
 				B21681161976E471004396A8 /* Main_iPhone.storyboard in Resources */,
@@ -268,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B216811C1976E471004396A8 /* ViewController.m in Sources */,
+				B2014D9619B75D43004F9579 /* UnitSliderView.m in Sources */,
 				B21681131976E471004396A8 /* AppDelegate.m in Sources */,
 				B2821ACE19A13E65008D2113 /* LayoutTableViewController.m in Sources */,
 				B216813E19772223004396A8 /* MatBorder.m in Sources */,
